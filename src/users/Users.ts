@@ -1,26 +1,27 @@
 import { User } from '../types/types';
 
-export class Users {
+class Users {
   private _users: User[] = [];
 
-  getUsers() {
+  async getUsers() {
     return this._users;
   }
 
-  getUserById(userId: string): User | undefined {
+  async getUserById(userId: string): Promise<User | undefined> {
     return this._users.find(user => user.id === userId);
   }
 
-  addUser(user: User) {
+  async addUser(user: User) {
     this._users.push(user);
+    return user;
   }
 
-  deleteUser(userId: string) {
+  async deleteUser(userId: string) {
     const newUsers = this._users.filter(user => user.id !== userId);
     return newUsers.length === this._users.length;
   }
 
-  updateUser(userId: string, propsForUser: Partial<User>): boolean {
+  async updateUser(userId: string, propsForUser: Partial<User>) {
     const userToUpdate = this.getUserById(userId);
 
     if (!userToUpdate) {
@@ -31,3 +32,5 @@ export class Users {
     return true;
   }
 }
+
+export default new Users();
