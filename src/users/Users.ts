@@ -18,18 +18,25 @@ class Users {
 
   async deleteUser(userId: string) {
     const newUsers = this._users.filter(user => user.id !== userId);
-    return newUsers.length === this._users.length;
+    const isDelete = newUsers.length === this._users.length
+    this._users = newUsers;
+    return isDelete;
   }
 
   async updateUser(userId: string, propsForUser: Partial<User>) {
-    const userToUpdate = this.getUserById(userId);
+    const userToUpdate = await this.getUserById(userId);
 
     if (!userToUpdate) {
-      return false;
+      return {
+        isFound: false,
+      };
     }
 
     Object.assign(userToUpdate, propsForUser);
-    return true;
+    return {
+      isFound: true,
+      user: userToUpdate,
+    };
   }
 }
 

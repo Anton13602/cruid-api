@@ -1,7 +1,7 @@
 import { createServer } from 'node:http';
 import { defaultPort, defaultRout } from './constants';
 import { RestMethod } from './types/types';
-import { addUser, getAllUsers, getUserById } from './userController/userController';
+import { addUser, deleteUser, getAllUsers, getUserById, updateUser } from './userController/userController';
 
 const PORT = process.env.NODE_TEST ? 5000 : (process.env.PORT || defaultPort);
 
@@ -37,6 +37,19 @@ export const startServer = async () => {
 
       if (method === RestMethod.GET && !propsUrl.length) {
         ({ status, header, body } = await getAllUsers());
+      }
+
+      if (method === RestMethod.PUT && data.length && propsUrl.length) {
+        const props = {
+          id: propsUrl,
+          data: data,
+        };
+
+        ({ status, header, body } = await updateUser(props));
+      }
+
+      if (method === RestMethod.DELETE && propsUrl.length) {
+        ({ status, header, body } = await deleteUser(propsUrl));
       }
 
       console.log(propsUrl);
