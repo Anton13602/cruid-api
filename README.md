@@ -12,7 +12,7 @@ Implemented a simple CRUD api for work with users using in-memory database under
 ## Pre-defined npm scripts:
 + `npm run start:dev` -> The application is run in development mode using nodemon
 + `npm run start:prod` -> The application is run in production mode (runs the build process and then runs the bundled file)
-
++ `npm run test` -> Tests are launched. The tests run when the server is running.
 
 ## Application functionality:
 Implemented endpoint `api/users`:
