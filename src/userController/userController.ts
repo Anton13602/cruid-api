@@ -17,7 +17,6 @@ export const addUser = async (data: string) => {
         age,
         hobbies,
       };
-      console.log(user);
 
       const newUser = await Users.addUser(user);
 
@@ -28,7 +27,6 @@ export const addUser = async (data: string) => {
       };
     }
   } catch (error) {
-    console.log(error);
     return {
       status: 400,
       header: 'Content-Type: application/json',
@@ -110,7 +108,7 @@ export const updateUser = async (props: { id: string, data: string }) => {
     return {
       status: 200,
       header: 'Content-Type: application/json',
-      body: JSON.stringify({ user }),
+      body: JSON.stringify(user),
     };
   } catch (e) {
     return {
