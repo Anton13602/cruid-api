@@ -1,6 +1,8 @@
 import { defaultPort } from '../constants';
 import { isUuid } from '../utils/isUuid';
+import dotenv from 'dotenv';
 
+dotenv.config();
 //Tests run when the server is running
 
 const mockData = {
