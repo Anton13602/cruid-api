@@ -1,8 +1,10 @@
 import { createServer } from 'node:http';
+import dotenv from 'dotenv';
 import { defaultRout } from './constants';
 import { RestMethod } from './types/types';
 import { addUser, deleteUser, getAllUsers, getUserById, updateUser } from './userController/userController';
 
+dotenv.config();
 const PORT = process.env.PORT || 4000;
 
 export const server = createServer((request, response) => {
